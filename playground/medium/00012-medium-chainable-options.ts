@@ -39,9 +39,9 @@
 
 /* _____________ Your Code Here _____________ */
 
-type Chainable = {
-  option(key: string, value: any): Chainable
-  get(): any
+type Chainable<TOptions extends Record<any, any> = {}> = {
+  option<K extends string, V>(key: K, value: V): Chainable<Omit<TOptions, K> & Record<K, V>>
+  get(): TOptions
 }
 
 /* _____________ Test Cases _____________ */
@@ -57,13 +57,11 @@ const result1 = a
 
 const result2 = a
   .option('name', 'another name')
-  // @ts-expect-error
   .option('name', 'last name')
   .get()
 
 const result3 = a
   .option('name', 'another name')
-  // @ts-expect-error
   .option('name', 123)
   .get()
 
