@@ -27,7 +27,11 @@
 /* _____________ Your Code Here _____________ */
 
 type Last<T extends any[]> = [any, ...T][T['length']]
-type Pop<T extends any[]> = undefined
+type Shift<T> = T extends [any, ...(infer V)] ? V : []
+type Push<T, U> = T extends any[]? [...T, U] : never
+type Unshift<T, U> = T extends any[] ? [U, ...T] : never
+type Pop<T> = T extends [...(infer A), infer L] ? A : []
+
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
@@ -36,7 +40,7 @@ type cases = [
   Expect<Equal<Pop<[3, 2, 1]>, [3, 2]>>,
   Expect<Equal<Pop<['a', 'b', 'c', 'd']>, ['a', 'b', 'c']>>,
   Expect<Equal<Pop<[]>, []>>,
-]
+] 
 
 /* _____________ Further Steps _____________ */
 /*
