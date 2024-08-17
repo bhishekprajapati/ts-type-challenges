@@ -18,7 +18,8 @@
 
 /* _____________ Your Code Here _____________ */
 
-type TrimLeft<S extends string> = S extends `${"" | " "}${NonNullable<infer T>}` ? T : never;
+type Space = " " | "\n" | "\t"
+type TrimLeft<S extends string> = S extends `${Space}${infer S}` ?  TrimLeft<S> : S;
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
