@@ -18,9 +18,7 @@
 
 /* _____________ Your Code Here _____________ */
 
-type MyCapitalize<S extends string> = [0];
-
-type R = MyCapitalize<"abc">;
+type MyCapitalize<S extends string> = S extends `${infer Char}${infer Sub}` ? `${Uppercase<Char>}${Sub}`: S;
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
