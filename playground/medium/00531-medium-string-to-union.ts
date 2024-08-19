@@ -18,8 +18,8 @@
 */
 
 /* _____________ Your Code Here _____________ */
-
-type StringToUnion<T extends string> = any
+type StringToArray<S extends string> = S extends `${infer T}${infer U}` ? [T, ...StringToArray<U>] : []
+type StringToUnion<T extends string> = StringToArray<T>[number]
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
