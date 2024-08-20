@@ -23,8 +23,8 @@
 */
 
 /* _____________ Your Code Here _____________ */
-
-type KebabCase<S> = any
+type IsUppercase<T extends string> = T extends Uppercase<T> ? true : false
+// type KebabCase<S> = S extends `${infer C}${infer T}`? 
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
